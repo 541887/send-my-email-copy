@@ -1,0 +1,18 @@
+name: emailbot
+
+on:
+  workflow_dispatch: #在actions界面点击即可运行
+  schedule:
+    - cron: "50 7 * * *" # 该时间为UTC时间，比北京时间晚8个小时，每天早上7点自动执行（需要注意该时间不准时，会有不同程度的分钟数的延迟）
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - run:  pip install -r ./r.txt  #此处为安装依赖包
+    - run: python ./.py  #此处为python代码的文件名
+
