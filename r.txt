@@ -1,7 +1,4 @@
 requests
 parsel
-re
-smtplib
-mail.mime.text
-email.mime.multipart
-email.header
+
+
