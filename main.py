@@ -72,8 +72,7 @@ state = ''.join(a)
 temp = ''.join(b)
 wind = ''.join(c)
 date = ''.join(d)
-print(a, b, c, d)
-print(state, temp, wind, date)
+
 
 
 # # 星座运势
