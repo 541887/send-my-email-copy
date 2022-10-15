@@ -2,9 +2,10 @@ name: emailbot
 
 on:
   workflow_dispatch: #在actions界面点击即可运行
+  push:
   schedule:
-    - cron: "0 22 * * *" # 该时间为UTC时间，比北京时间晚8个小时，每天早上7点自动执行（需要注意该时间不准时，会有不同程度的分钟数的延迟）
-
+    #- cron: "33 7 * * *" # 该时间为UTC时间，比北京时间早8个小时，每天早上7点自动执行（需要注意该时间不准时，会有不同程度的分钟数的延迟）
+    - cron: "0 23,4,9,14 * * *"
 jobs:
   build:
 
@@ -27,7 +28,7 @@ jobs:
           # 这些sectret的环境变量需要配置在setting中的secret下
         username: ${{ secrets.EMAILNAME }}  #变量名需与配置的一致
         password: ${{ secrets.EMAILPOP }}
-        subject: 每日体温填报
+        subject: 每日信息提醒
         body: file://mydata.html
         to: 771457766@qq.com   #填写要收件邮箱名
         from: GitHub Actions
