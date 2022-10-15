@@ -32,12 +32,13 @@ def fund(url_funds):
     # 正则表达式
     funds = str(funds)
     q1 = re.findall(
-        '<div class="mainPrice color_green-DS-EntryPoint1-1">(.*?)</div>', funds)
+        '-DS-EntryPoint1-1">(.*?)</div><div', funds)
     q2 = re.findall('<!-- -->(.*?)<!-- -->', funds)
+    
     # # 列表转字符串
-    funds = "".join(q1)
+    Price = "".join(q1)
     trend = ",".join(q2)
-    result = "价格：" + funds + "     " + "幅度: " + trend
+    result = "价格：" + Price + "     " + "幅度: " + trend
     return result
 
 
