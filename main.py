@@ -28,7 +28,9 @@ def fund(url_funds):
     response3.encoding = 'utf-8'
     selector3 = parsel.Selector(response3.text)
     funds = selector3.css('div.priceInfo-DS-EntryPoint1-1 > div').get()
+    
     # 正则表达式
+    funds = str(funds)
     q1 = re.findall(
         '<div class="mainPrice color_green-DS-EntryPoint1-1">(.*?)</div>', funds)
     q2 = re.findall('<!-- -->(.*?)<!-- -->', funds)
@@ -43,13 +45,14 @@ header = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.53"}
 
 url_wea = "https://www.tianqi.com/yuhuaqu/"
+url_wea2 = "https://www.tianqi.com/yuhuaqu/7/"
 url_con = "https://m.xzw.com/fortune/cancer/0/"
 url_funds1 = "https://www.msn.cn/zh-cn/money/watchlist?ocid=msedgntp&duration=1D&id=adfh77"
 url_funds2 = "https://www.msn.cn/zh-cn/money/watchlist?ocid=msedgntp&duration=1D&id=ah7etc"
 url_funds3 = "https://www.msn.cn/zh-cn/money/watchlist?ocid=msedgntp&duration=1D&id=a6qja2"
 
 
-# 天气信息获取
+# 天气信息获取（今天）
 # 请求天气网站
 response = requests.get(url_wea, headers=header)
 # 解码
@@ -72,6 +75,19 @@ state = ''.join(a)
 temp = ''.join(b)
 wind = ''.join(c)
 date = ''.join(d)
+
+# 请求天气网站（明天）
+response2 = requests.get(url_wea2, headers=header)
+# 解码
+response2.encoding = 'utf-8'
+selector2 = parsel.Selector(response2.text)
+# 定位
+weather2 = selector.css(
+    "body > div.w1100.newday40_top > div.inleft > ul.weaul > li:nth-child(2) > a > div:nth-child(4)").get()
+print(weather2)
+# 正则表达式
+# a = re.findall('<span><b>(.*?)</b>', weather)
+
 
 
 
