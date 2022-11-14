@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
     - run: 
-#          python -m pip install --upgrade pip
-            pip install -r r.txt
+         python -m pip install --upgrade pip
+         pip install -r /r.txt
     - run: python ./main.py  #此处为python代码的文件名
     #发送邮件，可选
     - name: 'Send mail' 
